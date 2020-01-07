@@ -1,10 +1,21 @@
 fun main(args: Array<String>) {
-    var fort : String
+    var fort : String = ""
     for (i in 1..10){
         fort = getFortuneCookie(getBirthday())
         println("\nYour fortune is: $fort")
         if(fort.contains("Take it easy")) break
     }
+//    //FortuneCookie repeat() ver
+//    repeat(10){
+//        fort = getFortuneCookie(getBirthday())
+//        println("\nYour fortune is: $fort")
+//        if(fort.contains("Take it easy")) break; //repeat는 반복문 자체가 아니라 상용구처럼 만든 함수이기에 break가 사용이 안됨
+//    }
+//    //FortuneCookie while ver
+//    while(!fort.contains("Take it easy")){
+//        fort = getFortuneCookie(getBirthday())
+//        println("\nYour fortune is: $fort")
+//    }
 }
 
 fun getBirthday() : Int{
