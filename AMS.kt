@@ -54,7 +54,23 @@ fun fishFood(day : String) : String{
     }
 }
 
-
 // Sequence 연산은 필터링과 map연산을 진행할 때, 중간 결과를 저장하는 컬렉션이 생기지 않아 리스트의 원소가 많을 떄 성능이 좋아짐.
 // 대신에 마지막에 toList()와 같은 연산을 추가해주면 그 때 계산이 됨.
 // asSequence를 사용하면 리스트의 항목(원소)를 하나씩 접근해서 계산하고 collection은 리스트 전체를 한번에 계산함.
+
+var dirty = 20
+
+val waterFilter : (Int) -> Int = { dirty -> dirty/2}
+fun feedFish(dirty: Int) = dirty + 10
+
+fun updateDirty(dirty: Int, operation:(Int)->Int) : Int{
+    return operation(dirty)
+}
+//고차 함수 예
+fun dirtyProcessor(){
+    dirty = updateDirty(dirty, waterFilter)
+    dirty = updateDirty(dirty, ::feedFish)
+    dirty = updateDirty(dirty){
+        dirty -> dirty + 50
+    }// 이때 람다는 updateDirty의 인수임.
+}
